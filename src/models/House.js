@@ -29,7 +29,8 @@ const spaces = new Schema(
         library: { type: Boolean },
         backyard: { type: Boolean },
         porch: { type: Boolean },
-        garden: { type: Boolean }
+        garden: { type: Boolean },
+        levels: { type: Number, min: 0, max: 25 }
     }
 )
 const details = new Schema(
@@ -46,6 +47,7 @@ const details = new Schema(
 
 export const HouseSchema = new Schema(
     {
+        owner: { type: String, required: true, minLength: 1, maxLength: 50 },
         address,
         year: { type: Number, required: true, min: 1900, max: 2025 },
         price: { type: Number, required: true, min: 0, max: 10000000 },
@@ -53,7 +55,8 @@ export const HouseSchema = new Schema(
         imgUrl: { type: String, required: true, minLength: 10, maxLength: 1000 },
         spaces,
         area,
-        details
+        details,
+        description: { type: String, maxLength: 5000 }
 
     },
     {

@@ -27,6 +27,8 @@ class HousesService {
 
         const houseToUpdate = await this.getHouseById(houseId)
 
+        houseToUpdate.owner = houseData.owner == undefined ? houseToUpdate.owner : houseData.owner
+
         // houseToUpdate.address = houseData.address == undefined ? houseToUpdate.address : houseData.address
         if (houseData.address) {
             houseToUpdate.address.street = houseData.address.street == undefined ? houseToUpdate.address.street : houseData.address.street
@@ -55,6 +57,7 @@ class HousesService {
             houseToUpdate.spaces.library = houseData.spaces.library == undefined ? houseToUpdate.spaces.library : houseData.spaces.library
             houseToUpdate.spaces.backyard = houseData.spaces.backyard == undefined ? houseToUpdate.spaces.backyard : houseData.spaces.backyard
             houseToUpdate.spaces.porch = houseData.spaces.porch == undefined ? houseToUpdate.spaces.porch : houseData.spaces.porch
+            houseToUpdate.spaces.levels = houseData.spaces.levels == undefined ? houseToUpdate.spaces.levels : houseData.spaces.levels
         }
 
         // houseToUpdate.area = houseData.area == undefined ? houseToUpdate.area : houseData.area
@@ -72,6 +75,7 @@ class HousesService {
             houseToUpdate.details.furnished = houseData.details.furnished == undefined ? houseToUpdate.details.dryer : houseData.details.dryer
             houseToUpdate.details.washer = houseData.details.washer == undefined ? houseToUpdate.details.dryer : houseData.details.dryer
         }
+        houseToUpdate.description = houseData.description == undefined ? houseToUpdate.description : houseData.description
 
         await houseToUpdate.save()
         return houseToUpdate
